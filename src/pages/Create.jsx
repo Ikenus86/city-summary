@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 import QuestionBlock from '../components/QuestionBlock';
+import AnswersManager from '../components/AnswersManager';
 import './Create.css';
 
-const Create = () => {
+const Create = () => { 
   const [survey, setSurvey] = useState({ title: '', description: '', questions: [] });
   const [newQuestion, setNewQuestion] = useState({ text: '', answers: [''] });
 
@@ -18,6 +19,16 @@ const Create = () => {
   const handleAddQuestion = () => {
     setSurvey({ ...survey, questions: [...survey.questions, newQuestion] });
     setNewQuestion({ text: '', answers: [''] });
+  };
+
+  const handleAddAnswer = (index) => {
+    setNewQuestion((prevNewQuestion) => {
+      const updatedAnswers = [...prevNewQuestion.answers, ''];
+      return { ...prevNewQuestion, answers: updatedAnswers };
+    });
+  };
+
+  const handleAnswerChange = (index, value) => {
   };
 
   const handleDeleteQuestion = (index) => {
@@ -49,15 +60,20 @@ const Create = () => {
               value={newQuestion.text}
               onChange={(e) => setNewQuestion({ ...newQuestion, text: e.target.value })}
             />
+            {newQuestion.answers.map((answer, index) => (
+            <AnswersManager key={index} question={newQuestion} index={index}  onAnswerChange={handleAnswerChange} />
+            ))}
+            
+            <button onClick={handleAddAnswer}>Aggiungi Risposta</button>
             <button onClick={handleAddQuestion}>Aggiungi</button>
           </div>
         </div>
         <div className="workspace">
           <DragDropContext onDragEnd={(result) => console.log(result)}>
-            <Droppable droppableId="questions">
-              {(provided) => (
-                <div {...provided.droppableProps} ref={provided.innerRef}>
-                  {survey.questions.map((question, index) => (
+            <Droppable droppableId="questions" >
+              {(provided, snapshot) => (
+                <div {...provided.droppableProps} ref={provided.innerRef} style={{ background: snapshot.isDragging ? 'lightblue' : 'transparent', padding: '10px' }}>
+                  {survey.questions.map((question, index) => ( 
                     <Draggable key={index} draggableId={`question-${index}`} index={index}>
                       {(provided) => (
                         <div
@@ -66,7 +82,7 @@ const Create = () => {
                           {...provided.dragHandleProps}
                         >
                           <QuestionBlock
-                            question={question}
+                           question={question}
                             onDelete={() => handleDeleteQuestion(index)}
                           />
                         </div>
