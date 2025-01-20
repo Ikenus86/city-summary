@@ -1,0 +1,22 @@
+.survey-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 10px 0;
+    background-color: #f9f9f9;
+  }
+  
+  .survey-card h3 {
+    margin: 0;
+  }
+  
+  .survey-card p {
+    margin: 8px 0;
+  }
+  
+  .details {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9em;
+    color: #666;
+  }

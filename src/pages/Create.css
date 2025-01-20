@@ -1,0 +1,32 @@
+.create-page {
+    padding: 20px;
+  }
+  
+  .create-container {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .sidebar {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .input-group input,
+  .input-group textarea {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .workspace {
+    flex: 1;
+  }

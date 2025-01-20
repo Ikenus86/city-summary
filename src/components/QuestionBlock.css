@@ -1,0 +1,30 @@
+.question-block {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 10px 0;
+    background-color: #f9f9f9;
+  }
+  
+  .question-block h4 {
+    margin: 0;
+  }
+  
+  .question-block ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .question-block ul li {
+    margin: 4px 0;
+  }
+  
+  .question-block button {
+    margin-top: 8px;
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
